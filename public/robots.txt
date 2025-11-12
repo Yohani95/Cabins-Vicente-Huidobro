@@ -1,0 +1,12 @@
+# robots.txt para Cabañas Vicente Huidobro
+# https://cabanas-vicente-huidobro.com
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://cabanas-vicente-huidobro.com/sitemap.xml
+
+# Optimización de rastreo
+Crawl-delay: 0
+

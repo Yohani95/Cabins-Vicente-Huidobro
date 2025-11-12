@@ -1,0 +1,254 @@
+{
+  "navbar": {
+    "cabanas": "Cabins",
+    "piscina": "Pool",
+    "ubicacion": "Location",
+    "contacto": "Contact",
+    "cta": "WhatsApp",
+    "current": "Current"
+  },
+  "footer": {
+    "tagline": "Family hospitality tucked between forest and sea.",
+    "address": "Address",
+    "whatsapp": "WhatsApp",
+    "schedule": "Open daily until 1:00 a.m.",
+    "newsletter_title": "Updates coming soon",
+    "newsletter_desc": "We'll notify you when the online booking system launches.",
+    "legal": "We only use your data to coordinate reservations.",
+    "rights": "All rights reserved.",
+    "crafted": "Developed by",
+    "version": "Version"
+  },
+  "seo": {
+    "title": "Cabañas Vicente Huidobro | Vacation Rentals Cartagena, Chile",
+    "description": "Fully equipped cabins in Cartagena, Valparaíso Region. Illuminated pool, BBQ grills, WiFi, private parking. Minutes from the beach and Vicente Huidobro Museum. 24/7 assistance.",
+    "keywords": "cartagena chile cabins,vacation rentals cartagena,cabins with pool chile,cartagena accommodation valparaiso,family cabins chile,beach cabins cartagena,holiday homes cartagena,chile vacation rentals,vicente huidobro cabins,cartagena tourism chile",
+    "ogTitle": "Cabañas Vicente Huidobro · Your Retreat in Cartagena",
+    "ogDescription": "Enjoy our fully equipped cabins with illuminated pool, BBQ grills and WiFi. Steps from the sea and Vicente Huidobro Museum in Cartagena, Chile.",
+    "ogImage": "/images/piscina/noche-1.jpg",
+    "siteName": "Cabañas Vicente Huidobro"
+  },
+  "landing": {
+    "hero": {
+      "alt": "Pool illuminated at dusk",
+      "tagline": "Cartagena · Chile",
+      "title": "Rustic comfort by the seaside",
+      "subtitle": "Unwind in our fully equipped cabins: illuminated pool, grills, WiFi and nature all around.",
+      "cta_primary": "Book via WhatsApp",
+      "cta_secondary": "View cabins",
+      "summary_title": "Includes",
+      "summary_rooms": "2 comfy bedrooms with daylight",
+      "summary_wifi": "WiFi and hot water 24/7",
+      "summary_pool": "3m x 5.5m pool with night lighting",
+      "summary_grill": "Gas and charcoal grills available",
+      "hours_title": "Hours",
+      "checkin": "Check-in 2:00 p.m.",
+      "checkout": "Check-out 12:00 p.m."
+    },
+    "highlights": {
+      "cabanas": {
+        "title": "Equipped cabins",
+        "desc": "Two cabins with two bedrooms, one bathroom, hot water, WiFi and private parking."
+      },
+      "piscina": {
+        "title": "Heated pool",
+        "desc": "3m x 5.5m, 1.55m depth. Daily use from 9:00 a.m. to 11:00 p.m. (extra fee applies)."
+      },
+      "extras": {
+        "title": "Extra services",
+        "bbq": "Gas grill (additional fee)",
+        "parking": "On-site parking",
+        "wifi": "High-speed WiFi",
+        "family": "Family friendly environment"
+      }
+    },
+    "experience": {
+      "title": "Experience Cartagena from a warm retreat",
+      "description": "Wake up surrounded by coastal forest, reach the beach in minutes and end your day under the warm lights of our pergola.",
+      "badges": {
+        "sunset": {
+          "title": "Magical sunsets",
+          "desc": "Lit pool and cozy string lights."
+        },
+        "nature": {
+          "title": "Natural setting",
+          "desc": "Native trees and fresh ocean breeze."
+        },
+        "comfort": {
+          "title": "Full comfort",
+          "desc": "Hot water, linens and equipped kitchen."
+        },
+        "security": {
+          "title": "Safe stay",
+          "desc": "Gated property and private parking."
+        }
+      }
+    },
+    "normas": {
+      "title": "House rules",
+      "no_fumar": "No smoking indoors.",
+      "mascotas": "No large pets allowed.",
+      "musica": "Keep music at a moderate level; quiet hours at midnight."
+    },
+    "horarios": {
+      "section": "Schedule",
+      "checkin": "Check-in",
+      "checkout": "Check-out"
+    },
+    "cta": {
+      "heading": "Plan your next getaway to Cartagena",
+      "description": "We are available until 1:00 a.m. to coordinate your stay and answer questions.",
+      "contact": "Chat on WhatsApp",
+      "visit": "See location"
+    },
+    "museo": {
+      "title": "Visit the Vicente Huidobro Museum",
+      "description": "Just 3-5 minutes from our cabins, you'll find the Vicente Huidobro House Museum, where you can learn about the life and work of the Chilean creationist poet.",
+      "address": "Cmo. Eden del Poeta, Cartagena",
+      "distance": "3-5 minutes by car from the cabins",
+      "cta": "More information"
+    }
+  },
+  "cabanas": {
+    "title": "Our Cabins",
+    "description": "Two wooden cabins surrounded by nature, perfect for families and small groups.",
+    "cover_alt": "Interior of a wooden cabin with bed",
+    "cabins_list": "Choose your cabin",
+    "features": {
+      "rooms": {
+        "title": "Bedrooms",
+        "desc": "Two cozy rooms filled with natural light."
+      },
+      "bathroom": {
+        "title": "Full bathroom",
+        "desc": "Hot water and spacious shower."
+      },
+      "wifi": {
+        "title": "Connectivity",
+        "desc": "Complimentary WiFi to keep you connected."
+      },
+      "parking": {
+        "title": "Parking",
+        "desc": "Private space inside the property."
+      }
+    },
+    "amenities": {
+      "hot_water": "Hot water",
+      "wifi": "WiFi",
+      "parking": "Parking"
+    },
+    "extras": {
+      "title": "Services & extras",
+      "items": {
+        "bbq_gas": {
+          "title": "Gas grill",
+          "desc": "Available with additional fee, gas provided."
+        },
+        "bbq_charcoal": {
+          "title": "Charcoal grill",
+          "desc": "Free to use, bring your own charcoal."
+        },
+        "pool_access": {
+          "title": "Pool access",
+          "desc": "Daily use from 9:00 a.m. to 11:00 p.m.; ask for rate."
+        },
+        "late_hours": {
+          "title": "Extended assistance",
+          "desc": "We coordinate late arrivals until 1:00 a.m."
+        },
+        "silence": {
+          "title": "Quiet nights",
+          "desc": "Please keep music low and respect the neighborhood."
+        },
+        "supplies": {
+          "title": "Equipment",
+          "desc": "Equipped kitchen, basic utensils and fridge."
+        }
+      }
+    },
+    "schedule": {
+      "checkin": "Check-in",
+      "checkout": "Check-out"
+    }
+  },
+  "piscina": {
+    "title": "Illuminated pool",
+    "intro": "Enjoy our heated outdoor pool, perfect to relax after a day at the beach.",
+    "gallery": {
+      "photo_one": "Night view of the pool and pergola",
+      "photo_two": "Side view of the pool and lounge area"
+    },
+    "facts": {
+      "size": {
+        "title": "Size",
+        "desc": "3 meters wide by 5.5 meters long."
+      },
+      "depth": {
+        "title": "Depth",
+        "desc": "1.55 meters, suitable for the whole family."
+      },
+      "hours": {
+        "title": "Hours",
+        "desc": "Open from 9:00 a.m. to 11:00 p.m."
+      },
+      "extra": {
+        "title": "Extra fee",
+        "desc": "Ask for rates depending on duration and guests."
+      }
+    },
+    "rules": {
+      "title": "Usage rules",
+      "items": {
+        "safety": {
+          "title": "Safety",
+          "desc": "No running near the pool and always supervise kids."
+        },
+        "maintenance": {
+          "title": "Care",
+          "desc": "Rinse before entering and avoid oils or lotions."
+        },
+        "respect": {
+          "title": "Respect",
+          "desc": "Keep music low and take care of the furniture."
+        }
+      }
+    }
+  },
+  "contacto": {
+    "title": "Let’s coordinate your stay",
+    "subtitle": "We reply to WhatsApp messages every day until 1:00 a.m.",
+    "cta_whatsapp": "Message on WhatsApp",
+    "cta_form": "Form under construction",
+    "quick_info": {
+      "title": "Quick info",
+      "hours": "Customer service: 9:00 a.m. to 1:00 a.m.",
+      "response": "We usually reply in under 30 minutes.",
+      "languages": "Spanish and English."
+    },
+    "coming_soon": {
+      "title": "Coming soon",
+      "description": "We’re building a booking and management panel for guests and staff.",
+      "admin": "Internal dashboard to review bookings from a tablet.",
+      "payments": "Digital payments integration.",
+      "reminders": "Automatic check-in/out reminders."
+    }
+  },
+  "ubicacion": {
+    "title": "Where to find us",
+    "intro": "We're located at Vicente Huidobro 384, Cartagena. Minutes away from the beach and surrounded by forest.",
+    "address_label": "Address",
+    "tips": {
+      "title": "Getting here",
+      "desc": "Paved access; we recommend car or private transport. Reference: Alto Cartagena area."
+    },
+    "map": {
+      "card_title": "Cabañas Vicente Huidobro",
+      "card_desc": "Main entrance with parking inside the property."
+    },
+    "disclaimer": "Coordinates are provided for GPS reference."
+  }
+}
+
+
+
+

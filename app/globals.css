@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-wood: #8B5E3C;
+    --color-sand: #C2B280;
+    --color-olive: #3E5C4B;
+    --color-canvas: #FAF8F5;
+    --color-ink: #1F2937;
+  }
+
+  body {
+    background: radial-gradient(circle at top, rgba(139, 94, 60, 0.08), transparent 55%),
+      linear-gradient(180deg, rgba(194, 178, 128, 0.12) 0%, transparent 35%),
+      var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+}
+
+.container-page {
+  @apply mx-auto max-w-6xl px-4 sm:px-6 lg:px-8;
+}
+
+.heading-rustic {
+  font-family: var(--font-display), serif;
+  @apply text-3xl sm:text-4xl font-bold text-olive tracking-tight;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-card border border-sand/30;
+  background-image: linear-gradient(145deg, rgba(139, 94, 60, 0.12), rgba(250, 248, 245, 0.95));
+}
+
+.badge {
+  @apply inline-flex items-center rounded-full bg-olive/10 px-3 py-1 text-xs font-medium text-olive;
+}
+
+
+
+

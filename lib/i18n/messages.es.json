@@ -1,0 +1,254 @@
+{
+  "navbar": {
+    "cabanas": "Cabañas",
+    "piscina": "Piscina",
+    "ubicacion": "Ubicación",
+    "contacto": "Contacto",
+    "cta": "WhatsApp",
+    "current": "Actual"
+  },
+  "footer": {
+    "tagline": "Hospitalidad familiar frente al bosque y muy cerca del mar.",
+    "address": "Dirección",
+    "whatsapp": "WhatsApp",
+    "schedule": "Atención diaria hasta la 1:00 a.m.",
+    "newsletter_title": "Próximamente novedades",
+    "newsletter_desc": "Te avisaremos cuando lancemos el sistema de reservas en línea.",
+    "legal": "Tus datos serán tratados solo para coordinar reservas.",
+    "rights": "Todos los derechos reservados.",
+    "crafted": "Desarrollado por",
+    "version": "Versión"
+  },
+  "seo": {
+    "title": "Cabañas Vicente Huidobro | Arriendo en Cartagena, Chile",
+    "description": "Cabañas totalmente equipadas en Cartagena, Región de Valparaíso. Piscina iluminada, parrillas, WiFi, estacionamiento privado. A minutos de la playa y del Museo Vicente Huidobro. Atención 24/7.",
+    "keywords": "cabañas cartagena,arriendo cabañas cartagena chile,cabañas con piscina cartagena,alojamiento cartagena valparaiso,cabañas familiares chile,arriendo por día cartagena,cabañas cerca playa cartagena,vacaciones cartagena chile,cabañas vicente huidobro,turismo cartagena región valparaíso",
+    "ogTitle": "Cabañas Vicente Huidobro · Tu Refugio en Cartagena",
+    "ogDescription": "Disfruta de nuestras cabañas equipadas con piscina iluminada, parrillas y WiFi. A pasos del mar y del Museo Vicente Huidobro en Cartagena, Chile.",
+    "ogImage": "/images/piscina/noche-1.jpg",
+    "siteName": "Cabañas Vicente Huidobro"
+  },
+  "landing": {
+    "hero": {
+      "alt": "Piscina iluminada al atardecer",
+      "tagline": "Cartagena · Chile",
+      "title": "Descanso rústico y acogedor junto al mar",
+      "subtitle": "Escápate a nuestras cabañas equipadas con todo lo necesario para relajarte: piscina iluminada, parrillas, WiFi y naturaleza.",
+      "cta_primary": "Reservar por WhatsApp",
+      "cta_secondary": "Ver cabañas",
+      "summary_title": "Incluye",
+      "summary_rooms": "2 habitaciones matrimoniales y/o familiares",
+      "summary_wifi": "WiFi y agua caliente 24/7",
+      "summary_pool": "Piscina 3m x 5.5m con iluminación nocturna",
+      "summary_grill": "Parrillas a gas y carbón disponibles",
+      "hours_title": "Horarios",
+      "checkin": "Check-in 14:00",
+      "checkout": "Check-out 12:00"
+    },
+    "highlights": {
+      "cabanas": {
+        "title": "Cabañas equipadas",
+        "desc": "Dos cabañas de 2 habitaciones y 1 baño, agua caliente, WiFi y estacionamiento privado."
+      },
+      "piscina": {
+        "title": "Piscina",
+        "desc": "3m x 5.5m, 1.55m de profundidad. Uso diario de 9:00 a 23:00 (consultar valor adicional)."
+      },
+      "extras": {
+        "title": "Servicios extras",
+        "bbq": "Parrilla a gas ($ adicional)",
+        "parking": "Estacionamiento interior",
+        "wifi": "WiFi de alta velocidad",
+        "family": "Ambiente familiar y seguro"
+      }
+    },
+    "experience": {
+      "title": "Vive Cartagena desde un refugio cálido",
+      "description": "Despierta entre bosques costeros, recorre la playa en minutos y termina el día bajo las luces cálidas de nuestro quincho.",
+      "badges": {
+        "sunset": {
+          "title": "Atardeceres mágicos",
+          "desc": "Piscina iluminada y quincho con guirnaldas."
+        },
+        "nature": {
+          "title": "Entorno natural",
+          "desc": "Árboles nativos y aire puro de la quebrada."
+        },
+        "comfort": {
+          "title": "Comodidad asegurada",
+          "desc": "Agua caliente, ropa de cama y cocina equipada."
+        },
+        "security": {
+          "title": "Seguridad",
+          "desc": "Cierre perimetral y estacionamiento propio."
+        }
+      }
+    },
+    "normas": {
+      "title": "Normas de la casa",
+      "no_fumar": "No fumar dentro de las cabañas.",
+      "mascotas": "Sin mascotas grandes.",
+      "musica": "Música moderada, silencio a medianoche."
+    },
+    "horarios": {
+      "section": "Horarios",
+      "checkin": "Check-in",
+      "checkout": "Check-out"
+    },
+    "cta": {
+      "heading": "Planea tu próxima escapada a Cartagena",
+      "description": "Estamos disponibles para coordinar tu reserva y resolver consultas hasta la 1:00 a.m.",
+      "contact": "Hablar por WhatsApp",
+      "visit": "Ver ubicación"
+    },
+    "museo": {
+      "title": "Visita el Museo Vicente Huidobro",
+      "description": "A solo 3-5 minutos de nuestras cabañas se encuentra la Casa Museo Vicente Huidobro, donde podrás conocer la vida y obra del poeta creacionista chileno.",
+      "address": "Cmo. Eden del Poeta, Cartagena",
+      "distance": "A 3-5 minutos en auto desde las cabañas",
+      "cta": "Más información"
+    }
+  },
+  "cabanas": {
+    "title": "Nuestras Cabañas",
+    "description": "Dos cabañas de madera rodeadas de naturaleza, equipadas para familias y grupos pequeños.",
+    "cover_alt": "Interior de cabaña con cama de madera",
+    "cabins_list": "Selecciona tu cabaña",
+    "features": {
+      "rooms": {
+        "title": "Dormitorios",
+        "desc": "2 habitaciones confortables con iluminación natural."
+      },
+      "bathroom": {
+        "title": "Baño completo",
+        "desc": "Agua caliente y ducha amplia."
+      },
+      "wifi": {
+        "title": "Conectividad",
+        "desc": "WiFi de cortesía para mantenerte comunicado."
+      },
+      "parking": {
+        "title": "Estacionamiento",
+        "desc": "Espacio privado dentro del recinto."
+      }
+    },
+    "amenities": {
+      "hot_water": "Agua caliente",
+      "wifi": "WiFi",
+      "parking": "Estacionamiento"
+    },
+    "extras": {
+      "title": "Servicios y extras",
+      "items": {
+        "bbq_gas": {
+          "title": "Parrilla a gas",
+          "desc": "Disponible con costo adicional y gas incluido."
+        },
+        "bbq_charcoal": {
+          "title": "Parrilla a carbón",
+          "desc": "Uso sin costo, carbón por cuenta del huésped."
+        },
+        "pool_access": {
+          "title": "Piscina",
+          "desc": "Uso diario de 9:00 a 23:00, consulta tarifa adicional."
+        },
+        "late_hours": {
+          "title": "Atención extendida",
+          "desc": "Coordinamos tu llegada hasta la 1:00 a.m."
+        },
+        "silence": {
+          "title": "Descanso asegurado",
+          "desc": "Pedimos música moderada y respeto por los vecinos."
+        },
+        "supplies": {
+          "title": "Equipamiento",
+          "desc": "Cocina equipada, utensilios básicos y refrigerador."
+        }
+      }
+    },
+    "schedule": {
+      "checkin": "Check-in",
+      "checkout": "Check-out"
+    }
+  },
+  "piscina": {
+    "title": "Piscina iluminada",
+    "intro": "Disfruta de nuestra piscina iluminada al aire libre, ideal para relajarte después de la playa.",
+    "gallery": {
+      "photo_one": "Piscina iluminada y quincho de noche",
+      "photo_two": "Vista lateral de piscina y quincho"
+    },
+    "facts": {
+      "size": {
+        "title": "Dimensiones",
+        "desc": "3 metros de ancho por 5.5 metros de largo."
+      },
+      "depth": {
+        "title": "Profundidad",
+        "desc": "1.55 metros, perfecta para toda la familia."
+      },
+      "hours": {
+        "title": "Horario",
+        "desc": "Disponible de 9:00 a 23:00 horas."
+      },
+      "extra": {
+        "title": "Valor adicional",
+        "desc": "Consulta tarifa según duración y cantidad de huéspedes."
+      }
+    },
+    "rules": {
+      "title": "Normas de uso",
+      "items": {
+        "safety": {
+          "title": "Seguridad",
+          "desc": "No correr alrededor de la piscina y supervisar a menores."
+        },
+        "maintenance": {
+          "title": "Cuidado",
+          "desc": "Dúchate antes de ingresar y evita usar cremas o aceites."
+        },
+        "respect": {
+          "title": "Respeto",
+          "desc": "Mantén el volumen de música moderado y cuida el mobiliario."
+        }
+      }
+    }
+  },
+  "contacto": {
+    "title": "Coordinemos tu estadía",
+    "subtitle": "Atendemos consultas todos los días hasta la 1:00 a.m. por WhatsApp.",
+    "cta_whatsapp": "Escribir por WhatsApp",
+    "cta_form": "Formulario en desarrollo",
+    "quick_info": {
+      "title": "Información rápida",
+      "hours": "Horario de atención: 09:00 a 01:00 hrs.",
+      "response": "Respondemos en menos de 30 minutos.",
+      "languages": "Español e inglés."
+    },
+    "coming_soon": {
+      "title": "Próximamente",
+      "description": "Estamos preparando un panel de reservas y seguimiento para huéspedes y administración.",
+      "admin": "Panel interno para revisar reservas desde tablet.",
+      "payments": "Integración con pagos digitales.",
+      "reminders": "Recordatorios automáticos de check-in/out."
+    }
+  },
+  "ubicacion": {
+    "title": "¿Dónde estamos?",
+    "intro": "Nos ubicamos en Vicente Huidobro 384, Cartagena. A minutos de la playa y rodeados de bosques.",
+    "address_label": "Dirección",
+    "tips": {
+      "title": "Cómo llegar",
+      "desc": "Acceso pavimentado; recomendamos vehículo o transporte privado. Referencia: sector Alto Cartagena."
+    },
+    "map": {
+      "card_title": "Cabañas Vicente Huidobro",
+      "card_desc": "Entrada principal y estacionamientos dentro del recinto."
+    },
+    "disclaimer": "Las coordenadas se utilizan como referencia para GPS."
+  }
+}
+
+
+
+

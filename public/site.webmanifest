@@ -1,0 +1,20 @@
+{
+  "name": "Cabañas Vicente Huidobro",
+  "short_name": "CVH",
+  "description": "Cabañas equipadas en Cartagena, Chile. Piscina iluminada, parrillas, WiFi y atención 24/7.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF8F5",
+  "theme_color": "#3E5C4B",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    }
+  ],
+  "categories": ["travel", "lodging"],
+  "lang": "es"
+}
+
