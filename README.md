@@ -218,9 +218,9 @@ values ('UUID_DEL_USUARIO', 'owner');
 ## 🗺️ Roadmap
 
 ### v0.2.0 (Próximo)
-- [ ] Panel de administración (tablet-optimized)
-- [ ] Sistema de reservas con Supabase
-- [ ] Integración de pagos
+- [ X] Panel de administración (tablet-optimized)
+- [ X] Sistema de reservas con Supabase
+- [ X] Integración de pagos
 - [ ] Recordatorios automáticos
 - [ ] Galería de fotos ampliada
 
