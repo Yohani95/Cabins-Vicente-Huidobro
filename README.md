@@ -197,6 +197,24 @@ vercel
 - `NEXT_PUBLIC_SUPABASE_URL`: (opcional)
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: (opcional)
 
+## 🛠️ Panel de Administración
+
+La ruta `/admin` ofrece un panel optimizado para tablet:
+
+- Dashboard con métricas en tiempo real (ocupación, reservas pendientes, pagos, mensajes).
+- Gestión completa de reservas (crear, editar, cancelar) con Server Actions seguras.
+- Módulo de mensajes con filtros, marcado de leídos y archivado.
+- Historial de pagos por reserva con balance y registro rápido.
+- Calendario mensual por cabaña y panel de alertas (check-in/out próximos, saldos, mensajes).
+- Indicadores en la navegación para contar pendientes.
+
+> Para acceder, crea un usuario en Supabase Auth y añádelo a la tabla `admin_users`.
+
+```
+insert into public.admin_users (user_id, role)
+values ('UUID_DEL_USUARIO', 'owner');
+```
+
 ## 🗺️ Roadmap
 
 ### v0.2.0 (Próximo)

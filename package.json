@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.5.0",
     "@supabase/supabase-js": "^2.47.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -18,6 +19,7 @@
     "next": "15.0.3",
     "next-intl": "^3.25.5",
     "react": "18.3.1",
+    "react-day-picker": "^9.11.1",
     "react-dom": "18.3.1",
     "react-leaflet": "^4.2.1",
     "zod": "^3.23.8"
@@ -37,7 +39,3 @@
     "typescript": "^5.6.3"
   }
 }
-
-
-
-

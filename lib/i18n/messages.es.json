@@ -4,6 +4,11 @@
     "piscina": "Piscina",
     "ubicacion": "Ubicación",
     "contacto": "Contacto",
+    "admin": "Administración",
+    "admin_dashboard": "Ir al panel",
+    "admin_menu": "Administración",
+    "logout": "Cerrar sesión",
+    "logout_loading": "Cerrando sesión…",
     "cta": "WhatsApp",
     "current": "Actual"
   },
@@ -246,6 +251,246 @@
       "card_desc": "Entrada principal y estacionamientos dentro del recinto."
     },
     "disclaimer": "Las coordenadas se utilizan como referencia para GPS."
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Panel",
+      "reservas": "Reservas",
+      "pagos": "Pagos",
+      "mensajes": "Mensajes",
+      "calendario": "Calendario",
+      "alertas": "Alertas"
+    },
+    "header": {
+      "title": "Panel de administración",
+      "subtitle": "Monitorea reservas, pagos y mensajes en tiempo real."
+    },
+    "quick_actions": {
+      "new_reservation": "Nueva reserva",
+      "register_payment": "Registrar pago",
+      "view_messages": "Ver mensajes"
+    },
+    "account": {
+      "logout": "Cerrar sesión",
+      "logout_loading": "Cerrando sesión…"
+    },
+    "status": {
+      "ocupacion": "Ocupación",
+      "pendientes": "Reservas pendientes",
+      "pagos": "Pagos recientes",
+      "mensajes": "Mensajes nuevos"
+    },
+    "login": {
+      "title": "Inicia sesión",
+      "subtitle": "Accede con tu usuario administrador para gestionar las cabañas.",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "remember": "Recordar sesión en este dispositivo",
+      "access": "Ingresar al panel",
+      "loading": "Ingresando...",
+      "error": "Credenciales inválidas. Intenta nuevamente.",
+      "success": "Sesión iniciada correctamente."
+    },
+    "reservas": {
+      "title": "Reservas",
+      "subtitle": "Controla el estado de las reservas y coordina los pagos pendientes.",
+      "create": "Nueva reserva",
+      "refresh": "Actualizar listado",
+      "search_placeholder": "Buscar por nombre o teléfono…",
+      "empty": {
+        "title": "Aún no hay reservas",
+        "description": "Registra la primera reserva manualmente o comparte el número de contacto para que te escriban."
+      },
+      "table": {
+        "guest": "Huésped",
+        "cabana": "Cabaña",
+        "dates": "Fechas",
+        "status": "Estado",
+        "amount": "Monto",
+        "actions": "Acciones",
+        "checkin": "Entrada",
+        "checkout": "Salida",
+        "phone": "Teléfono",
+        "email": "Correo",
+        "guests": "Personas"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "confirmed": "Confirmada",
+        "checked_in": "Check-in",
+        "checked_out": "Check-out",
+        "cancelled": "Cancelada"
+      },
+      "actions": {
+        "view": "Ver detalle",
+        "edit": "Editar",
+        "cancel": "Cancelar"
+      },
+      "filters": {
+        "status": "Estado",
+        "statuses": {
+          "all": "Todos",
+          "pending": "Pendientes",
+          "confirmed": "Confirmadas",
+          "checked_in": "Check-in",
+          "checked_out": "Check-out",
+          "cancelled": "Canceladas"
+        },
+        "from": "Desde",
+        "to": "Hasta"
+      },
+      "form": {
+        "create_title": "Registrar nueva reserva",
+        "edit_title": "Editar reserva",
+        "guest_name": "Nombre del huésped",
+        "guest_phone": "Teléfono",
+        "guest_email": "Correo electrónico",
+        "guests_count": "Cantidad de personas",
+        "check_in": "Check-in",
+        "check_out": "Check-out",
+        "status": "Estado",
+        "cabana": "Cabaña",
+        "amount": "Monto pactado (opcional)",
+        "notes": "Notas internas (opcional)",
+        "submit_create": "Crear reserva",
+        "submit_update": "Guardar cambios",
+        "cancel": "Cerrar",
+        "error": "No pudimos guardar la reserva. Intenta nuevamente.",
+        "success_create": "Reserva creada correctamente.",
+        "success_update": "Reserva actualizada correctamente.",
+        "date_error": "La fecha de salida debe ser posterior al check-in.",
+        "date_conflict": "La cabaña ya está reservada para esas fechas. Selecciona otro rango disponible.",
+        "occupied_ranges_title": "Fechas ocupadas",
+        "steps": {
+          "cabin": "Cabaña",
+          "dates": "Fechas",
+          "details": "Datos del huésped"
+        },
+        "step_hint": {
+          "cabin": "Elige la cabaña que deseas reservar.",
+          "dates": "Selecciona un rango disponible para esa cabaña.",
+          "details": "Completa los datos del huésped y confirma la reserva.",
+          "next": "Próxima ocupación:",
+          "free": "Sin reservas futuras."
+        },
+        "selected_label": "Seleccionada",
+        "next_step": "Continuar",
+        "go_to_details": "Ir a datos",
+        "back": "Volver"
+      },
+      "confirm_cancel": "¿Seguro que deseas cancelar esta reserva?"
+    },
+    "mensajes": {
+      "title": "Mensajes",
+      "subtitle": "Gestiona consultas de huéspedes y marca su estado.",
+      "filters": {
+        "all": "Todos",
+        "unread": "No leídos",
+        "archived": "Archivados"
+      },
+      "search_placeholder": "Buscar por nombre, correo o teléfono…",
+      "empty": {
+        "title": "No hay mensajes",
+        "description": "Cuando recibas consultas aparecerán aquí para responderlas rápidamente."
+      },
+      "table": {
+        "guest": "Huésped",
+        "contact": "Contacto",
+        "message": "Mensaje",
+        "received": "Recibido",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "mark_read": "Marcar leído",
+        "archive": "Archivar",
+        "restore": "Restaurar",
+        "reply_whatsapp": "Responder por WhatsApp"
+      },
+      "status": {
+        "unread": "No leído",
+        "read": "Leído",
+        "archived": "Archivado"
+      }
+    },
+    "pagos": {
+      "title": "Pagos",
+      "subtitle": "Revisa los abonos realizados por reserva y registra nuevos pagos.",
+      "search_placeholder": "Buscar por huésped o cabaña…",
+      "empty": {
+        "title": "Sin pagos registrados",
+        "description": "Cuando registres pagos aparecerán aquí junto al balance de cada reserva."
+      },
+      "table": {
+        "guest": "Huésped",
+        "cabana": "Cabaña",
+        "booking_amount": "Monto pactado",
+        "paid": "Pagado",
+        "balance": "Saldo",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "payments": {
+        "title": "Pagos registrados",
+        "amount": "Monto",
+        "method": "Método",
+        "reference": "Referencia",
+        "date": "Fecha",
+        "no_payments": "Sin pagos registrados"
+      },
+      "form": {
+        "title": "Registrar pago",
+        "amount": "Monto pagado",
+        "payment_type": "Tipo",
+        "method": "Método",
+        "reference": "Referencia (opcional)",
+        "notes": "Notas (opcional)",
+        "submit": "Guardar pago",
+        "cancel": "Cerrar",
+        "error": "No pudimos registrar el pago. Intenta nuevamente.",
+        "success": "Pago registrado correctamente.",
+        "payment_types": {
+          "partial": "Anticipo",
+          "full": "Pago total"
+        },
+        "methods": {
+          "transfer": "Transferencia",
+          "cash": "Efectivo",
+          "debit": "Débito",
+          "credit": "Crédito"
+        }
+      },
+      "delete": {
+        "label": "Eliminar pago",
+        "confirm": "¿Seguro que deseas eliminar este pago?"
+      }
+    },
+    "calendario": {
+      "title": "Calendario de disponibilidad",
+      "subtitle": "Revisa la ocupación por cabaña y gestiona bloqueos o check-in/checkout.",
+      "legend": {
+        "available": "Disponible",
+        "occupied": "Ocupado",
+        "checkin": "Check-in",
+        "checkout": "Check-out"
+      },
+      "filters": {
+        "cabins": "Todas las cabañas"
+      },
+      "weekdays": ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"],
+      "empty": "No hay reservas en este mes."
+    },
+    "alertas": {
+      "title": "Alertas y recordatorios",
+      "subtitle": "Mantén el control de check-in, check-out y pagos pendientes.",
+      "sections": {
+        "checkins": "Check-in próximos",
+        "checkouts": "Check-out próximos",
+        "balances": "Reservas con saldo pendiente",
+        "mensajes": "Mensajes sin leer"
+      },
+      "empty": "Sin alertas por ahora",
+      "cta": "Ir a la reserva"
+    }
   }
 }
 

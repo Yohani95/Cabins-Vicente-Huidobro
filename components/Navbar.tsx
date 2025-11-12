@@ -1,13 +1,17 @@
 "use client";
 
 import { Link } from '@/navigation';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Button } from './ui/Button';
-import { Menu, X } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { ChevronDown, Menu, X } from 'lucide-react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
+import { supabase } from '@/lib/supabaseClient';
+import type { Session } from '@supabase/supabase-js';
+import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 type NavItem = {
   href: string;
@@ -17,6 +21,12 @@ type NavItem = {
 export function Navbar() {
   const t = useTranslations('navbar');
   const [open, setOpen] = useState(false);
+  const [session, setSession] = useState<Session | null>(null);
+  const [isSigningOut, setIsSigningOut] = useState(false);
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
+  const locale = useLocale();
+  const router = useRouter();
+  const accountMenuRef = useRef<HTMLDivElement | null>(null);
 
   const items = useMemo<NavItem[]>(
     () => [
@@ -27,6 +37,65 @@ export function Navbar() {
     ],
     [t]
   );
+
+  useEffect(() => {
+    let isMounted = true;
+
+    supabase.auth.getSession().then(({ data }) => {
+      if (!isMounted) return;
+      setSession(data.session ?? null);
+    });
+
+    const {
+      data: authListener
+    } = supabase.auth.onAuthStateChange((_event, currentSession) => {
+      if (!isMounted) return;
+      setSession(currentSession);
+      if (!currentSession) {
+        setIsSigningOut(false);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+      authListener.subscription.unsubscribe();
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isAccountMenuOpen &&
+        accountMenuRef.current &&
+        !accountMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsAccountMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isAccountMenuOpen]);
+
+  const handleSignOut = useCallback(async () => {
+    try {
+      setIsSigningOut(true);
+      const { error } = await supabase.auth.signOut();
+      if (error) {
+        console.error('Error al cerrar sesión', error);
+        setIsSigningOut(false);
+        return;
+      }
+      setOpen(false);
+      setIsAccountMenuOpen(false);
+      router.push(`/${locale}/admin/login`);
+    } catch (error) {
+      console.error('Error inesperado al cerrar sesión', error);
+      setIsSigningOut(false);
+    }
+  }, [locale, router]);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-sand/50 bg-white/75 backdrop-blur-xl">
@@ -60,16 +129,63 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <a
-            href="https://wa.me/56975267860"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button size="sm" className="shadow-sm shadow-olive/20">
-              {t('cta')}
-            </Button>
-          </a>
-          <LanguageSwitcher />
+          {session ? (
+            <div className="flex items-center gap-3" ref={accountMenuRef}>
+              <div className="relative">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex items-center gap-2 rounded-xl border-sand/60 bg-white text-slate-700 hover:border-olive hover:text-olive"
+                  onClick={() => setIsAccountMenuOpen((prev) => !prev)}
+                >
+                  <span>{t('admin_menu')}</span>
+                  <ChevronDown
+                    className={cn(
+                      'h-4 w-4 transition-transform',
+                      isAccountMenuOpen ? 'rotate-180' : 'rotate-0'
+                    )}
+                  />
+                </Button>
+                <AnimatePresence>
+                  {isAccountMenuOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute right-0 top-12 w-48 rounded-2xl border border-sand/40 bg-white/95 p-2 text-sm text-slate-700 shadow-xl backdrop-blur"
+                    >
+                      <Link
+                        href="/admin"
+                        onClick={() => setIsAccountMenuOpen(false)}
+                        className="flex w-full items-center gap-2 rounded-xl px-3 py-2 transition hover:bg-olive/10 hover:text-olive"
+                      >
+                        {t('admin_dashboard')}
+                      </Link>
+                      <button
+                        type="button"
+                        className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left transition hover:bg-rose-50 hover:text-rose-600"
+                        onClick={handleSignOut}
+                        disabled={isSigningOut}
+                      >
+                        {isSigningOut ? t('logout_loading') : t('logout')}
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+              <LanguageSwitcher />
+            </div>
+          ) : (
+            <>
+              <Link href="/admin">
+                <Button size="sm" className="shadow-sm shadow-olive/20">
+                  {t('admin')}
+                </Button>
+              </Link>
+              <LanguageSwitcher />
+            </>
+          )}
         </div>
 
         <button
@@ -100,18 +216,35 @@ export function Navbar() {
                   {item.label}
                 </Link>
               ))}
-              <div className="flex items-center justify-between">
-                <a
-                  href="https://wa.me/56975267860"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Button size="sm" className="w-full">
-                    {t('cta')}
+              {session ? (
+                <div className="flex flex-col gap-3">
+                  <Link href="/admin" onClick={() => setOpen(false)}>
+                    <Button size="sm" variant="outline" className="w-full">
+                      {t('admin_dashboard')}
+                    </Button>
+                  </Link>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={handleSignOut}
+                    disabled={isSigningOut}
+                  >
+                    {isSigningOut ? t('logout_loading') : t('logout')}
                   </Button>
-                </a>
-                <LanguageSwitcher />
-              </div>
+                  <div className="flex justify-end">
+                    <LanguageSwitcher />
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between gap-3">
+                  <Link href="/admin" onClick={() => setOpen(false)}>
+                    <Button size="sm" className="w-full">
+                      {t('admin')}
+                    </Button>
+                  </Link>
+                  <LanguageSwitcher />
+                </div>
+              )}
             </div>
           </motion.div>
         )}
