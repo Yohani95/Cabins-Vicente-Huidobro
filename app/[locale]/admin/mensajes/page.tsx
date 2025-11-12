@@ -2,12 +2,12 @@ import { notFound } from "next/navigation";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
 import MessagesClient from "./MessagesClient";
 
-export default async function AdminMessagesPage({
-  params
-}: {
-  params: { locale: string };
-}) {
-  const locale = params.locale;
+type AdminMessagesPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function AdminMessagesPage({ params }: AdminMessagesPageProps) {
+  const { locale } = await params;
   if (!locale) {
     notFound();
   }

@@ -136,7 +136,7 @@ export default function HomePage() {
               {t('experience.description')}
             </p>
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
-              {['sunset', 'nature', 'comfort', 'security'].map((key, index) => (
+              {['sunset', 'nature', 'comfort', 'security'].map((key) => (
                 <div key={key} className="rounded-xl border border-sand/30 bg-canvas/70 p-5">
                   <p className="text-sm font-semibold text-olive">
                     {t(`experience.badges.${key}.title`)}

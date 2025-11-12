@@ -68,9 +68,9 @@ const NAV_ITEMS: NavItem[] = [
   }
 ];
 
-const COUNT_KEYS = ["reservas", "mensajes"] as const;
+type NavCountKey = "reservas" | "mensajes";
 
-type NavCounts = Partial<Record<(typeof COUNT_KEYS)[number], number>>;
+type NavCounts = Partial<Record<NavCountKey, number>>;
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const t = useTranslations("admin");

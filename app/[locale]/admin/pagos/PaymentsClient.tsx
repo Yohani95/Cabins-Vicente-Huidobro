@@ -11,7 +11,6 @@ import {
 } from "@/app/actions/payments";
 import type { ActionResult } from "@/app/actions/reservations";
 import { useRouter } from "next/navigation";
-import { cn } from "@/lib/utils";
 import { Plus, RefreshCcw, Search, Trash2, Wallet } from "lucide-react";
 
 const PAYMENT_TYPES = [
@@ -32,12 +31,14 @@ type Payment = {
   created_at: string;
 };
 
+type ReservationStatus = "pending" | "confirmed" | "checked_in" | "checked_out" | "cancelled";
+
 type ReservationWithPayments = {
   id: string;
   guest_name: string;
   guest_phone: string | null;
   guest_email: string | null;
-  status: string;
+  status: ReservationStatus;
   amount: number | null;
   cabanas: {
     name: string;
@@ -211,7 +212,7 @@ export default function PaymentsClient({ locale, reservations }: PaymentsClientP
                 <div>
                   <p className="text-sm font-semibold text-olive">{reservation.guest_name}</p>
                   <p className="text-xs text-slate-500">
-                    {reservation.cabanas?.name ?? "—"} • {statusReservationT(reservation.status as any)}
+                    {reservation.cabanas?.name ?? "—"} • {statusReservationT(reservation.status)}
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3 text-sm text-slate-700">

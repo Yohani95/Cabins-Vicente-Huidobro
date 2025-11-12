@@ -1,13 +1,13 @@
 import { notFound } from "next/navigation";
 import { getSupabaseServerClient } from "@/lib/supabase/server";
-import AlertsClient from "./AlertsClient";
+import AlertsClient, { type ReservationAlert, type MessageAlert } from "./AlertsClient";
 
-export default async function AdminAlertsPage({
-  params
-}: {
-  params: { locale: string };
-}) {
-  const locale = params.locale;
+type AdminAlertsPageProps = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function AdminAlertsPage({ params }: AdminAlertsPageProps) {
+  const { locale } = await params;
   if (!locale) {
     notFound();
   }
@@ -28,11 +28,32 @@ export default async function AdminAlertsPage({
       .order("created_at", { ascending: false })
   ]);
 
+  type ReservationRecord = Omit<ReservationAlert, "cabanas" | "pagos"> & {
+    cabanas: { name: string } | { name: string }[] | null;
+    pagos: Array<{ amount: number | null }> | null;
+  };
+
+  const reservationRecords: ReservationRecord[] = Array.isArray(reservations)
+    ? (reservations as ReservationRecord[])
+    : [];
+
+  const normalizedReservations: ReservationAlert[] = reservationRecords.map((reservation) => ({
+    ...reservation,
+    cabanas: Array.isArray(reservation.cabanas)
+      ? reservation.cabanas[0] ?? null
+      : reservation.cabanas ?? null,
+    pagos: reservation.pagos ?? []
+  }));
+
+  const normalizedUnreadMessages: MessageAlert[] = Array.isArray(unreadMessages)
+    ? (unreadMessages as MessageAlert[])
+    : [];
+
   return (
     <AlertsClient
       locale={locale}
-      reservations={reservations ?? []}
-      unreadMessages={unreadMessages ?? []}
+      reservations={normalizedReservations}
+      unreadMessages={normalizedUnreadMessages}
     />
   );
 }

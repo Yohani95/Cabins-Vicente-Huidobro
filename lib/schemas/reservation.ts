@@ -52,10 +52,27 @@ const reservationBaseObject = z.object({
   notes: z.string().optional()
 });
 
+type WithDates = {
+  check_in: string;
+  check_out: string;
+};
+
+function hasDates(value: unknown): value is WithDates {
+  if (typeof value !== "object" || value === null) return false;
+  const candidate = value as Record<string, unknown>;
+  return (
+    typeof candidate.check_in === "string" &&
+    typeof candidate.check_out === "string"
+  );
+}
+
 function withDateValidation<T extends z.ZodTypeAny>(schema: T) {
   return schema.superRefine((data, ctx) => {
-    const checkIn = new Date((data as any).check_in);
-    const checkOut = new Date((data as any).check_out);
+    if (!hasDates(data)) {
+      return;
+    }
+    const checkIn = new Date(data.check_in);
+    const checkOut = new Date(data.check_out);
     if (Number.isNaN(checkIn.getTime()) || Number.isNaN(checkOut.getTime())) {
       return;
     }

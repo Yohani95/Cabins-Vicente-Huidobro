@@ -23,7 +23,11 @@ import "react-day-picker/dist/style.css";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
-const STATUS_STYLES: Record<string, { text: string; bg: string; border: string }> = {
+const STATUS_VALUES = ["pending", "confirmed", "checked_in", "checked_out", "cancelled"] as const;
+
+type ReservationStatus = (typeof STATUS_VALUES)[number];
+
+const STATUS_STYLES: Record<ReservationStatus, { text: string; bg: string; border: string }> = {
   pending: {
     text: "text-amber-700",
     bg: "bg-amber-50",
@@ -51,13 +55,15 @@ const STATUS_STYLES: Record<string, { text: string; bg: string; border: string }
   }
 };
 
-const STATUS_OPTIONS = [
-  { value: "pending" },
-  { value: "confirmed" },
-  { value: "checked_in" },
-  { value: "checked_out" },
-  { value: "cancelled" }
-] as const;
+const STATUS_OPTIONS: ReadonlyArray<{ value: ReservationStatus }> = STATUS_VALUES.map((value) => ({
+  value
+}));
+
+function isReservationStatus(value: string): value is ReservationStatus {
+  return (STATUS_VALUES as readonly string[]).includes(value);
+}
+
+type StatusFilterKey = `statuses.${ReservationStatus}`;
 
 type Reservation = {
   id: string;
@@ -67,7 +73,7 @@ type Reservation = {
   guests_count: number;
   check_in: string;
   check_out: string;
-  status: string;
+  status: ReservationStatus;
   amount: number | null;
   notes: string | null;
   cabana_id: string;
@@ -88,7 +94,7 @@ type ReservationFormState = {
   guests_count: string;
   check_in: string;
   check_out: string;
-  status: string;
+  status: ReservationStatus;
   cabana_id: string;
   amount: string;
   notes: string;
@@ -183,8 +189,6 @@ export default function ReservationsClient({
   const formatAmount = (value: number) => formatCurrencyCLP(value, locale === 'en' ? 'en-US' : 'es-CL');
   const formatDate = (value: string) => formatDateShort(value, locale === 'en' ? 'en-US' : 'es-CL');
 
-  const todayISO = formatDateForInput(new Date());
-  const defaultCheckoutMin = formatDateForInput(addDays(startOfDay(new Date()), 1));
   const reservationBlocks = useMemo(() => {
     const map = new Map<
       string,
@@ -227,27 +231,6 @@ export default function ReservationsClient({
     });
     return filtered.sort((a, b) => a.start - b.start);
   }, [formState.cabana_id, reservationBlocks, mode, editingId]);
-
-  const checkoutMinISO = formState.check_in
-    ? formatDateForInput(addDays(startOfDay(formState.check_in), 1))
-    : defaultCheckoutMin;
-
-  const firstBlockedAfterCheckIn = useMemo(() => {
-    if (!formState.cabana_id || !formState.check_in) return undefined;
-    const checkInTime = startOfDay(formState.check_in).getTime();
-    const upcoming = selectedCabinBlocks.filter((block) => block.start >= checkInTime);
-    return upcoming.sort((a, b) => a.start - b.start)[0];
-  }, [formState.cabana_id, formState.check_in, selectedCabinBlocks]);
-
-  const checkoutMaxISO = useMemo(() => {
-    if (!firstBlockedAfterCheckIn) return undefined;
-    const maxDate = addDays(new Date(firstBlockedAfterCheckIn.start), -1);
-    if (!formState.check_in) return undefined;
-    if (maxDate <= startOfDay(formState.check_in)) {
-      return formatDateForInput(addDays(startOfDay(formState.check_in), 1));
-    }
-    return formatDateForInput(maxDate);
-  }, [firstBlockedAfterCheckIn, formState.check_in]);
 
   const isDateInvalid =
     Boolean(formState.check_in) &&
@@ -313,7 +296,7 @@ export default function ReservationsClient({
 
   const handlePrevStep = useCallback(() => {
     setDateConflictMessage("");
-    setCurrentStep((prev) => Math.max(1, prev - 1));
+    setCurrentStep((prev) => (prev === 1 ? 1 : ((prev - 1) as 1 | 2 | 3)));
   }, []);
 
   const handleNextStep = useCallback(() => {
@@ -422,7 +405,7 @@ export default function ReservationsClient({
     cancelReservationSA.execute(id, () => router.refresh());
   };
 
-  const todayStart = startOfDay(new Date());
+  const todayStart = useMemo(() => startOfDay(new Date()), []);
 
   const selectedRange = useMemo(() => {
     if (!formState.check_in) return undefined;
@@ -438,7 +421,7 @@ export default function ReservationsClient({
       to: addDays(new Date(block.end), -1)
     }));
     return [{ before: todayStart }, ...occupiedRanges];
-  }, [selectedCabinBlocks]);
+  }, [selectedCabinBlocks, todayStart]);
 
   return (
     <div className="space-y-6">
@@ -466,7 +449,7 @@ export default function ReservationsClient({
             <option value="all">{filtersT("statuses.all")}</option>
             {STATUS_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
-                {filtersT(`statuses.${option.value}` as any)}
+                {filtersT(`statuses.${option.value}` as StatusFilterKey)}
               </option>
             ))}
           </select>
@@ -531,7 +514,7 @@ export default function ReservationsClient({
                     </span>
                   </div>
                   <StatusBadge status={reservation.status}>
-                    {statusT(reservation.status as any)}
+                    {statusT(reservation.status)}
                   </StatusBadge>
                 </div>
                 <div className="mt-4 space-y-2 text-sm text-slate-600">
@@ -626,7 +609,7 @@ export default function ReservationsClient({
                       <td className="px-6 py-4">{reservation.guests_count}</td>
                       <td className="px-6 py-4">
                         <StatusBadge status={reservation.status}>
-                          {statusT(reservation.status as any)}
+                        {statusT(reservation.status)}
                         </StatusBadge>
                       </td>
                       <td className="px-6 py-4 text-right font-medium text-slate-700">
@@ -898,15 +881,20 @@ export default function ReservationsClient({
                         <select
                           value={formState.status}
                           onChange={(event) =>
-                            setFormState((prev) => ({ ...prev, status: event.target.value }))
+                      setFormState((prev) => {
+                        const nextStatus = event.target.value;
+                        return isReservationStatus(nextStatus)
+                          ? { ...prev, status: nextStatus }
+                          : prev;
+                      })
                           }
                           className="w-full rounded-xl border border-sand/40 bg-white/80 px-3 py-2 text-sm shadow-inner outline-none transition focus:border-olive focus:ring-2 focus:ring-olive/20"
                         >
-                          {STATUS_OPTIONS.map((option) => (
-                            <option key={option.value} value={option.value}>
-                              {statusT(option.value as any)}
-                            </option>
-                          ))}
+                    {STATUS_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {statusT(option.value)}
+                      </option>
+                    ))}
                         </select>
                       </div>
                       <FormField
@@ -1006,7 +994,7 @@ export default function ReservationsClient({
 }
 
 type StatusBadgeProps = {
-  status: string;
+  status: ReservationStatus;
   children: React.ReactNode;
 };
 

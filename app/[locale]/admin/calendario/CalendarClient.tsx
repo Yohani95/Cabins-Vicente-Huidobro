@@ -9,11 +9,13 @@ import { formatDateShort } from "@/lib/utils/format";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
+type ReservationStatus = "pending" | "confirmed" | "checked_in" | "checked_out" | "cancelled";
+
 type Reservation = {
   id: string;
   cabana_id: string;
   guest_name: string;
-  status: string;
+  status: ReservationStatus;
   check_in: string;
   check_out: string;
   cabanas: {
@@ -331,7 +333,7 @@ export default function CalendarClient({ locale, reservations, cabanas }: Calend
                   </p>
                 </div>
                 <span className="text-xs uppercase tracking-[0.2em] text-slate-500">
-                  {statusReservationT(reservation.status as any)}
+                  {statusReservationT(reservation.status)}
                 </span>
               </li>
             ))}

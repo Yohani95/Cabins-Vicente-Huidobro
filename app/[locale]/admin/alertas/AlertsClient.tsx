@@ -2,10 +2,8 @@
 
 import { useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
 import { formatCurrencyCLP, formatDateShort } from "@/lib/utils/format";
 import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
@@ -14,10 +12,12 @@ type Payment = {
   amount: number | null;
 };
 
-type ReservationAlert = {
+type ReservationStatus = "pending" | "confirmed" | "checked_in" | "checked_out" | "cancelled";
+
+export type ReservationAlert = {
   id: string;
   guest_name: string;
-  status: string;
+  status: ReservationStatus;
   check_in: string;
   check_out: string;
   amount: number | null;
@@ -27,7 +27,7 @@ type ReservationAlert = {
   pagos: Payment[];
 };
 
-type MessageAlert = {
+export type MessageAlert = {
   id: string;
   guest_name: string;
   guest_phone: string | null;
@@ -110,7 +110,7 @@ export default function AlertsClient({
           <AlertCard
             key={`checkin-${reservation.id}`}
             title={`${reservation.guest_name} • ${reservation.cabanas?.name ?? "—"}`}
-            description={`${formatDate(reservation.check_in)} • ${statusT(reservation.status as any)}`}
+            description={`${formatDate(reservation.check_in)} • ${statusT(reservation.status)}`}
             link={`/admin/reservas?id=${reservation.id}`}
             linkLabel={t("cta")}
           />
@@ -124,7 +124,7 @@ export default function AlertsClient({
           <AlertCard
             key={`checkout-${reservation.id}`}
             title={`${reservation.guest_name} • ${reservation.cabanas?.name ?? "—"}`}
-            description={`${formatDate(reservation.check_out)} • ${statusT(reservation.status as any)}`}
+            description={`${formatDate(reservation.check_out)} • ${statusT(reservation.status)}`}
             link={`/admin/reservas?id=${reservation.id}`}
             linkLabel={t("cta")}
           />
