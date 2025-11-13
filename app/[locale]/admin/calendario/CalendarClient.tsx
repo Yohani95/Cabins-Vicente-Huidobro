@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { formatDateShort } from "@/lib/utils/format";
+import { formatDateShort, normalizeDate } from "@/lib/utils/format";
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
@@ -59,8 +59,8 @@ export default function CalendarClient({ locale, reservations, cabanas }: Calend
       if (selectedCabin !== "all" && reservation.cabana_id !== selectedCabin) {
         return false;
       }
-      const checkIn = new Date(reservation.check_in).getTime();
-      const checkOut = new Date(reservation.check_out).getTime();
+      const checkIn = normalizeDate(reservation.check_in).getTime();
+      const checkOut = normalizeDate(reservation.check_out).getTime();
       return checkOut >= rangeStart && checkIn < rangeEnd;
     });
   }, [currentMonth, reservations, selectedCabin]);
@@ -83,27 +83,24 @@ export default function CalendarClient({ locale, reservations, cabanas }: Calend
       const checkIn = startOfDay(reservation.check_in);
       const checkOut = startOfDay(reservation.check_out);
       const cabinName = reservation.cabanas?.name ?? "—";
-      for (let time = checkIn.getTime(); time < checkOut.getTime(); time += MS_PER_DAY) {
-        const current = new Date(time);
-        const key = keyFromDate(current);
-        const dayStatus = map.get(key) ?? { occupied: false, cabins: [] };
+
+      for (
+        let time = checkIn.getTime();
+        time < checkOut.getTime();
+        time += MS_PER_DAY
+      ) {
+        const day = new Date(time);
+        const dayStatus = ensureDayStatus(map, day);
+        const cabinStatus = ensureCabinStatus(dayStatus, cabinName);
         dayStatus.occupied = true;
-
-        let cabinStatus = dayStatus.cabins.find((cabin) => cabin.name === cabinName);
-        if (!cabinStatus) {
-          cabinStatus = { name: cabinName, checkin: false, checkout: false };
-          dayStatus.cabins.push(cabinStatus);
-        }
-
         if (time === checkIn.getTime()) {
           cabinStatus.checkin = true;
         }
-        if (time + MS_PER_DAY === checkOut.getTime()) {
-          cabinStatus.checkout = true;
-        }
-
-        map.set(key, dayStatus);
       }
+
+      const checkoutStatus = ensureDayStatus(map, checkOut);
+      const checkoutCabin = ensureCabinStatus(checkoutStatus, cabinName);
+      checkoutCabin.checkout = true;
     });
     return map;
   }, [filteredReservations]);
@@ -360,13 +357,30 @@ function getStartOfCalendar(firstDayOfMonth: Date) {
   return startDate;
 }
 
-function startOfDay(value: string) {
-  const date = new Date(value);
-  return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+function startOfDay(value: string | Date) {
+  return normalizeDate(value);
 }
 
 function keyFromDate(date: Date) {
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+}
+
+function ensureDayStatus(map: Map<string, DayStatus>, date: Date) {
+  const normalized = normalizeDate(date);
+  const key = keyFromDate(normalized);
+  if (!map.has(key)) {
+    map.set(key, { occupied: false, cabins: [] });
+  }
+  return map.get(key)!;
+}
+
+function ensureCabinStatus(dayStatus: DayStatus, cabinName: string) {
+  let cabinStatus = dayStatus.cabins.find((cabin) => cabin.name === cabinName);
+  if (!cabinStatus) {
+    cabinStatus = { name: cabinName, checkin: false, checkout: false };
+    dayStatus.cabins.push(cabinStatus);
+  }
+  return cabinStatus;
 }
 
 function Legend({ t }: { t: ReturnType<typeof useTranslations> }) {

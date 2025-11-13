@@ -8,15 +8,15 @@ import { motion } from 'framer-motion';
 const CABINS = [
   {
     id: 1,
-    name: 'Cabaña 1',
-    slug: 'cabin-1',
-    image: '/images/cabanas/cabana-1.jpg'
-  },
-  {
-    id: 2,
     name: 'Cabaña 2',
     slug: 'cabin-2',
     image: '/images/cabanas/cabana-2.jpg'
+  },
+  {
+    id: 2,
+    name: 'Cabaña 1',
+    slug: 'cabin-1',
+    image: '/images/cabanas/cabana-1.jpg'
   }
 ] as const;
 

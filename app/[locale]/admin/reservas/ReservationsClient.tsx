@@ -211,7 +211,7 @@ export default function ReservationsClient({
       map.get(reservation.cabana_id)!.push({
         id: reservation.id,
         start,
-        end,
+        end: startOfDay(reservation.check_out).getTime(),
         check_in: reservation.check_in,
         check_out: reservation.check_out
       });
@@ -411,7 +411,7 @@ export default function ReservationsClient({
     if (!formState.check_in) return undefined;
     const from = toLocalDate(formState.check_in);
     if (!formState.check_out) return { from } as { from: Date; to?: Date };
-    const to = addDays(toLocalDate(formState.check_out), -1);
+    const to = toLocalDate(formState.check_out);
     return { from, to };
   }, [formState.check_in, formState.check_out]);
 
@@ -769,8 +769,7 @@ export default function ReservationsClient({
                             return;
                           }
                           const fromISO = formatDateForInput(startOfDay(range.from));
-                          const exclusiveCheckout = addDays(startOfDay(range.to), 1);
-                          const toISO = formatDateForInput(exclusiveCheckout);
+                          const toISO = formatDateForInput(startOfDay(range.to));
                           if (
                             formState.cabana_id &&
                             hasRangeConflict(formState.cabana_id, fromISO, toISO)
