@@ -204,7 +204,6 @@ export default function ReservationsClient({
     reservations.forEach((reservation) => {
       if (reservation.status === "cancelled") return;
       const start = startOfDay(reservation.check_in).getTime();
-      const end = startOfDay(reservation.check_out).getTime();
       if (!map.has(reservation.cabana_id)) {
         map.set(reservation.cabana_id, []);
       }

@@ -63,7 +63,7 @@ export function Footer() {
               </a>
             </span>
             <span className="hidden md:inline">·</span>
-            <span>{t('version')} 0.1.0</span>
+            <span>{t('version')} 1.1.0</span>
           </div>
         </div>
       </div>
