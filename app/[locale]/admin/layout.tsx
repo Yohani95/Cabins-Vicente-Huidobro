@@ -275,35 +275,18 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {quickActions.map((action) => {
-              if (action.key === "view_messages") {
-                return (
-                  <Link
-                    key={action.key}
-                    href={action.href}
-                    className="md:hidden"
-                    onClick={closeSidebar}
-                  >
-                    <Button size="sm" variant="ghost">
-                      {action.label}
-                    </Button>
-                  </Link>
-                );
-              }
-
-              return (
-                <Link
-                  key={action.key}
-                  href={action.href}
-                  className="hidden md:inline-flex"
-                  onClick={closeSidebar}
-                >
-                  <Button size="sm" variant={action.variant === "outline" ? "outline" : "default"}>
-                    {action.label}
-                  </Button>
-                </Link>
-              );
-            })}
+            {quickActions.map((action) => (
+              <Link
+                key={action.key}
+                href={action.href}
+                className="hidden md:inline-flex"
+                onClick={closeSidebar}
+              >
+                <Button size="sm" variant={action.variant === "outline" ? "outline" : "default"}>
+                  {action.label}
+                </Button>
+              </Link>
+            ))}
           </div>
         </header>
 
@@ -311,23 +294,23 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <div className="mx-auto max-w-6xl">{children}</div>
         </main>
 
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sand/40 bg-white/90 px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3 shadow-[0_-10px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
-          <div className="mx-auto flex max-w-2xl items-center gap-2">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sand/30 bg-white/95 px-3 pb-[calc(env(safe-area-inset-bottom)+0.5rem)] pt-2 shadow-[0_-8px_24px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
+          <div className="mx-auto grid max-w-2xl grid-cols-3 gap-2">
             {quickActions.map(({ key, href, label, icon: Icon, variant }) => (
               <Link
                 key={key}
                 href={href}
                 onClick={closeSidebar}
                 className={cn(
-                  "flex h-11 flex-1 items-center justify-center gap-2 rounded-2xl px-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2",
+                  "flex h-14 flex-col items-center justify-center gap-1 rounded-2xl px-2 text-[11px] font-semibold leading-none transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2",
                   variant === "primary"
-                    ? "bg-olive text-white shadow-md"
-                    : "border border-sand bg-white text-olive hover:bg-sand/20"
+                    ? "bg-olive text-white shadow-sm"
+                    : "border border-sand/80 bg-white text-olive active:bg-sand/30"
                 )}
                 aria-label={label}
               >
-                <Icon className="h-4 w-4" />
-                <span className="truncate">{label}</span>
+                <Icon className="h-5 w-5" />
+                <span className="max-w-full truncate">{label}</span>
               </Link>
             ))}
           </div>
