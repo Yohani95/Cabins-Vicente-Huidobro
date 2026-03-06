@@ -151,6 +151,33 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     [t]
   );
 
+  const quickActions = useMemo(
+    () => [
+      {
+        key: "new_reservation",
+        href: "/admin/reservas",
+        label: t("quick_actions.new_reservation"),
+        icon: CalendarDays,
+        variant: "primary"
+      },
+      {
+        key: "register_payment",
+        href: "/admin/pagos",
+        label: t("quick_actions.register_payment"),
+        icon: CreditCard,
+        variant: "outline"
+      },
+      {
+        key: "view_messages",
+        href: "/admin/mensajes",
+        label: t("quick_actions.view_messages"),
+        icon: Mail,
+        variant: "ghost"
+      }
+    ]),
+    [t]
+  );
+
   const closeSidebar = () => setIsSidebarOpen(false);
 
   if (isAuthRoute) {
@@ -234,7 +261,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
           <div className="flex items-center gap-3">
             <button
               type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-xl border border-sand/50 text-olive md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-sand/50 text-olive md:hidden"
               onClick={() => setIsSidebarOpen((prev) => !prev)}
               aria-label={isSidebarOpen ? "Cerrar menú" : "Abrir menú"}
             >
@@ -248,21 +275,63 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button size="sm" variant="outline" className="hidden md:inline-flex">
-              {t("quick_actions.new_reservation")}
-            </Button>
-            <Button size="sm" className="hidden md:inline-flex">
-              {t("quick_actions.register_payment")}
-            </Button>
-            <Button size="sm" variant="ghost" className="md:hidden">
-              {t("quick_actions.view_messages")}
-            </Button>
+            {quickActions.map((action) => {
+              if (action.key === "view_messages") {
+                return (
+                  <Link
+                    key={action.key}
+                    href={action.href}
+                    className="md:hidden"
+                    onClick={closeSidebar}
+                  >
+                    <Button size="sm" variant="ghost">
+                      {action.label}
+                    </Button>
+                  </Link>
+                );
+              }
+
+              return (
+                <Link
+                  key={action.key}
+                  href={action.href}
+                  className="hidden md:inline-flex"
+                  onClick={closeSidebar}
+                >
+                  <Button size="sm" variant={action.variant === "outline" ? "outline" : "default"}>
+                    {action.label}
+                  </Button>
+                </Link>
+              );
+            })}
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto bg-canvas px-4 py-6 md:px-8">
+        <main className="flex-1 overflow-y-auto bg-canvas px-4 py-6 pb-[calc(env(safe-area-inset-bottom)+6rem)] md:px-8 md:pb-6">
           <div className="mx-auto max-w-6xl">{children}</div>
         </main>
+
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-sand/40 bg-white/90 px-4 pb-[calc(env(safe-area-inset-bottom)+0.75rem)] pt-3 shadow-[0_-10px_30px_rgba(15,23,42,0.08)] backdrop-blur md:hidden">
+          <div className="mx-auto flex max-w-2xl items-center gap-2">
+            {quickActions.map(({ key, href, label, icon: Icon, variant }) => (
+              <Link
+                key={key}
+                href={href}
+                onClick={closeSidebar}
+                className={cn(
+                  "flex h-11 flex-1 items-center justify-center gap-2 rounded-2xl px-3 text-sm font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-olive focus-visible:ring-offset-2",
+                  variant === "primary"
+                    ? "bg-olive text-white shadow-md"
+                    : "border border-sand bg-white text-olive hover:bg-sand/20"
+                )}
+                aria-label={label}
+              >
+                <Icon className="h-4 w-4" />
+                <span className="truncate">{label}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
