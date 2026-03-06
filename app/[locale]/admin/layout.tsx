@@ -174,7 +174,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
         icon: Mail,
         variant: "ghost"
       }
-    ]),
+    ],
     [t]
   );
 
